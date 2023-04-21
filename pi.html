@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <title>The 100 digits of π!</title>
+        <link id="icon" rel="icon" href="pi-icon.ico" type="image/x-icon" />
+        <style>
+            * {
+                font-family: Arial;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center; font-size: 50px;">The 100 digits of π!</h1>
+        <label for="piInput">Type π here: </label>
+        <input id="piInput" style="width: 35px; height: 25px; font-size: 20px;">
+        <label style="font-weight: 1000;">|</label>
+        <label id="livesDisplay">0</label>
+        <label style="font-weight: 1000;">|</label>
+        <label id="piDigit">π digit: 0</label>
+        <br>
+        <div id="piDisplay" style="font-size: 25px; background-image: linear-gradient(#d9d9d9, #cccccc); padding: 5px; border-radius: 5px; border: 2px solid #000000; margin-top: 5px; text-align: left;"></div>
+        <script>
+            var lives = 5;
+            var livesDisplay = document.getElementById("livesDisplay");
+            var piDisplay = document.getElementById("piDisplay");
+            var piDigit = document.getElementById("piDigit");
+            var ended = false;
+            const pi = [
+                3,
+                ".",
+                1,
+                4,
+                1,
+                5,
+                9,
+                2,
+                6,
+                5,
+                3,
+                5,
+                8,
+                9,
+                7,
+                9,
+                3,
+                2,
+                3,
+                8,
+                4,
+                6,
+                2,
+                6,
+                4,
+                3,
+                3,
+                8,
+                3,
+                2,
+                7,
+                9,
+                5,
+                0,
+                2,
+                8,
+                8,
+                4,
+                1,
+                9,
+                7,
+                1,
+                6,
+                9,
+                3,
+                9,
+                9,
+                3,
+                7,
+                5,
+                1,
+                0,
+                5,
+                8,
+                2,
+                0,
+                9,
+                7,
+                4,
+                9,
+                4,
+                4,
+                5,
+                9,
+                2,
+                3,
+                0,
+                7,
+                8,
+                1,
+                6,
+                4,
+                0,
+                6,
+                2,
+                8,
+                6,
+                2,
+                0,
+                8,
+                9,
+                9,
+                8,
+                6,
+                2,
+                8,
+                0,
+                3,
+                4,
+                8,
+                2,
+                5,
+                3,
+                4,
+                2,
+                1,
+                1,
+                7,
+                0,
+                6,
+                7
+            ];
+            var piNumber = 0;
+            livesDisplay.innerHTML = "Lives: " + lives;
+            document.addEventListener("keydown", (event) => {
+                if (!ended) {
+                    var piInput = document.getElementById("piInput");
+                    if (piInput == document.activeElement) {
+                        piInput.value = "";
+                        if (event.key == pi[piNumber]) {
+                            piNumber += 1;
+                            piDigit.innerHTML = "π digit: " + piNumber;
+                            piDisplay.innerHTML = piDisplay.innerHTML + event.key;
+                        } else {
+                            lives -= 1;
+                            livesDisplay.innerHTML = "Lives: " + lives;
+                        }
+                    }
+                    if (lives < 0) {
+                        lives = 0;
+                        livesDisplay.innerHTML = "Game over!";
+                        ended = true;
+                        var span = document.createElement("span");
+                        span.style = "color: #ff0000";
+                        piDisplay.appendChild(span)
+                        for (let i = piNumber; i < pi.length; i++) {
+                            span.innerHTML += pi[i];
+                        };
+                    }
+                } else {
+                    var piInput = document.getElementById("piInput");
+                    if (piInput == document.activeElement) {
+                        piInput.innerHTML = "";
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
